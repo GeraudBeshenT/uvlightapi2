@@ -8,8 +8,8 @@ if (!isset($_GET['id'])) {
 } else {
     $data = [];
 
-    $req = $pdo->prepare("SELECT * FROM documentclient D INNER JOIN etat E ON E.idetat=D.idetat WHERE D.idclient = :idclient");
-    $req->bindValue(':idclient', $_GET['id'], PDO::PARAM_STR);
+    $req = $pdo->prepare("SELECT * FROM documentclient D INNER JOIN etat E ON E.idetat=D.idetat WHERE D.iddocumentclient = :iddocumentclient");
+    $req->bindValue(':iddocumentclient', $_GET['id'], PDO::PARAM_STR);
     $req->execute();
     while ($row = $req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
         $data[] = $row;
