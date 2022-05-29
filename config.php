@@ -1,7 +1,7 @@
 <?php
 
 $host     = 'localhost';
-$db       = 'api_rest';
+$db       = 'uvlight';
 $user     = 'root';
 $password = '';
 

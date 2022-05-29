@@ -4,16 +4,16 @@ include('config.php');
 
 $idclient = $_GET['idclient'];
 $data = [];
-$req = $pdo->prepare("SELECT idcom, nomcom, prix, C.idclient, nomclient, commentaire FROM commande C INNER JOIN client CL ON C.idclient = CL.idclient WHERE C.idclient = :idclient");
+$req = $pdo->prepare("SELECT iddocumentclient, datedocclient, commentaireclient, statutclient, D.idetat, D.idclient FROM documentclient D INNER JOIN client CL ON D.idclient = CL.idclient WHERE D.idclient = :idclient");
 $req->bindValue(':idclient', $idclient, PDO::PARAM_STR);
 $req->execute();
 while ($row = $req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
     $data[] = [
-        'idcom' => $row['idcom'],
-        'nomcom' => $row['nomcom'],
-        'prix' => $row['prix'],
-        'idclient' => $row['nomclient'],
-        'commentaire' => $row['commentaire']];
+        'iddocumentclient' => $row['iddocumentclient'],
+        'datedoclient' => $row['datedocclient'],
+        'statutclient' => $row['statutclient'],
+        'idetat' => $row['libetat'],
+        'idclient' => $row['nomclient']];
 }
 
 header('Access-Control-Allow-Origin: *');
