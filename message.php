@@ -7,7 +7,7 @@ if (!isset($_GET['message']) && !isset($_GET['id'])) {
     echo json_encode(['message' => 'false']);
 } else {
     
-    $req = $pdo->prepare("INSERT INTO message (iddocumentclient, libmessage) VALUES (:iddocumentclient, :libmessage);");
+    $req = $pdo->prepare("INSERT INTO message (iddocumentclient, libmessage, datemessage, typemessage) VALUES (:iddocumentclient, :libmessage, NOW(), 'Vous');");
     $req->bindValue(':libmessage', $_GET['message'], PDO::PARAM_STR);
     $req->bindValue(':iddocumentclient', $_GET['id'], PDO::PARAM_INT);
     $req->execute();
